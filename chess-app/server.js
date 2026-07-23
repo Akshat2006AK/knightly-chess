@@ -2,7 +2,6 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const SQLiteStore = require('connect-sqlite3')(session);
 const http = require('http');
 const { Server } = require('socket.io');
 
@@ -18,7 +17,6 @@ const io = new Server(server);
 const PORT = process.env.PORT || 3000;
 
 const sessionMiddleware = session({
-  store: new SQLiteStore({ db: 'sessions.sqlite', dir: path.join(__dirname, 'data') }),
   secret: process.env.SESSION_SECRET || 'dev-secret-change-me',
   resave: false,
   saveUninitialized: false,
