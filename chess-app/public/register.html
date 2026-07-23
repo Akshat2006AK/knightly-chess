@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create your account &mdash; Knightly</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="brand"><span class="piece">&#9822;</span> Knightly</a>
+  <div class="nav-links"><a href="/login.html">Log in instead</a></div>
+</nav>
+
+<div class="auth-wrap">
+  <div class="card auth-card">
+    <span class="eyebrow">Pull up a chair</span>
+    <h2>Create your account</h2>
+    <p class="sub">Takes a few seconds. No email verification required.</p>
+
+    <div class="form-error" id="formError"></div>
+
+    <form id="registerForm">
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="e.g. rook_lord" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="At least 6 characters" autocomplete="new-password" required>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit" id="submitBtn">Create account</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="/login.html">Log in</a></p>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+</body>
+</html>

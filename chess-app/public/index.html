@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knightly &mdash; Chess with your friends</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand"><span class="piece">&#9822;</span> Knightly</div>
+  <div class="nav-links" id="navLinks">
+    <a href="/login.html">Log in</a>
+    <a href="/register.html" class="btn btn-primary" style="padding:9px 18px;">Sign up</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-board" id="heroBoard" aria-hidden="true"></div>
+  <span class="eyebrow">A quiet room, a wooden board, a friend on the other side</span>
+  <h1>Chess, kept<br><span class="accent">between friends.</span></h1>
+  <p class="lead">Open a room, send the code, and play a real game in real time &mdash; clocks, move ledger and a chat rail included. No ads, no strangers, no fuss.</p>
+  <div class="hero-actions">
+    <a href="/register.html" class="btn btn-primary">Create your account</a>
+    <a href="/login.html" class="btn btn-ghost">I already play here</a>
+  </div>
+</header>
+
+<section class="container">
+  <div class="feature-grid">
+    <div class="feature">
+      <span class="num">01</span>
+      <h3>Private rooms</h3>
+      <p>Every game gets a six-character code. Share it with one friend and you're seated across the board.</p>
+    </div>
+    <div class="feature">
+      <span class="num">02</span>
+      <h3>Real clocks</h3>
+      <p>Pick bullet, blitz, rapid or untimed. The clock only runs on the side to move.</p>
+    </div>
+    <div class="feature">
+      <span class="num">03</span>
+      <h3>A proper ledger</h3>
+      <p>Every move is recorded in algebraic notation as you play, and the result is saved to your history.</p>
+    </div>
+    <div class="feature">
+      <span class="num">04</span>
+      <h3>Table talk</h3>
+      <p>A chat rail sits beside the board so you can needle your opponent between moves.</p>
+    </div>
+  </div>
+</section>
+
+<p class="footer-note">Built for two people and a board. &copy; <span id="year"></span> Knightly.</p>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Decorative static starting position for the hero board
+  const startRow = ['R','N','B','Q','K','B','N','R'];
+  const glyphs = {
+    wK:'&#9812;', wQ:'&#9813;', wR:'&#9814;', wB:'&#9815;', wN:'&#9816;', wP:'&#9817;',
+    bK:'&#9818;', bQ:'&#9819;', bR:'&#9820;', bB:'&#9821;', bN:'&#9822;', bP:'&#9823;'
+  };
+  const board = document.getElementById('heroBoard');
+  let html = '';
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const light = (r + c) % 2 === 0;
+      let glyph = '';
+      if (r === 0) glyph = glyphs['b' + startRow[c]];
+      else if (r === 1) glyph = glyphs.bP;
+      else if (r === 6) glyph = glyphs.wP;
+      else if (r === 7) glyph = glyphs['w' + startRow[c]];
+      html += `<div class="sq ${light ? 'light' : 'dark'}">${glyph}</div>`;
+    }
+  }
+  board.innerHTML = html;
+
+  // If already logged in, send straight to the lobby
+  fetch('/api/auth/me').then(r => { if (r.ok) window.location.href = '/lobby.html'; }).catch(() => {});
+</script>
+</body>
+</html>

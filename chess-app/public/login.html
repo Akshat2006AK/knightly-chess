@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in &mdash; Knightly</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="brand"><span class="piece">&#9822;</span> Knightly</a>
+  <div class="nav-links"><a href="/register.html">Sign up instead</a></div>
+</nav>
+
+<div class="auth-wrap">
+  <div class="card auth-card">
+    <span class="eyebrow">Welcome back</span>
+    <h2>Log in</h2>
+    <p class="sub">Your board is right where you left it.</p>
+
+    <div class="form-error" id="formError"></div>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="username">Username or email</label>
+        <input id="username" name="username" type="text" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit" id="submitBtn">Log in</button>
+    </form>
+
+    <p class="auth-switch">New here? <a href="/register.html">Create an account</a></p>
+    <p class="auth-switch"><a href="/admin.html" style="font-size:12px;">Owner / admin portal &rarr;</a></p>
+  </div>
+</div>
+
+<script src="/js/auth.js"></script>
+</body>
+</html>

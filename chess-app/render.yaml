@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: knightly-chess
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_PASSWORD
+        value: AKadmin1204
+    disk:
+      name: knightly-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

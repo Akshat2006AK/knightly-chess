@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lobby &mdash; Knightly</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="brand"><span class="piece">&#9822;</span> Knightly</a>
+  <div class="nav-links">
+    <span class="mono" id="whoami" style="color:var(--text-muted); font-size:13px;"></span>
+    <button class="btn btn-ghost" id="logoutBtn">Log out</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="lobby-grid">
+    <div class="card">
+      <span class="eyebrow">New game</span>
+      <h3>Open a room</h3>
+      <p class="hint">Choose a clock, then send the room code to whoever you're playing.</p>
+
+      <div class="time-options" id="timeOptions">
+        <div class="time-chip" data-secs="180">3 min</div>
+        <div class="time-chip" data-secs="300">5 min</div>
+        <div class="time-chip active" data-secs="600">10 min</div>
+        <div class="time-chip" data-secs="900">15 min</div>
+        <div class="time-chip" data-secs="1800">30 min</div>
+        <div class="time-chip" data-secs="0">Untimed</div>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="createBtn">Create room</button>
+
+      <div id="createdRoomBox" style="display:none; margin-top:18px;">
+        <div class="room-code-display" id="roomCodeDisplay"></div>
+        <button class="btn btn-block" id="copyBtn">Copy code</button>
+        <button class="btn btn-primary btn-block" id="enterRoomBtn" style="margin-top:10px;">Enter the room</button>
+      </div>
+
+      <div style="margin-top:28px; border-top:1px solid var(--line); padding-top:22px;">
+        <span class="eyebrow">Have a code?</span>
+        <div class="field" style="margin-top:10px;">
+          <input id="joinCode" placeholder="e.g. K7X2QM" maxlength="6" style="text-transform:uppercase;">
+        </div>
+        <div class="form-error" id="joinError"></div>
+        <button class="btn btn-block" id="joinBtn">Join room</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="eyebrow">Your games</span>
+      <h3>Recent &amp; ongoing</h3>
+      <p class="hint">Games you've created or joined.</p>
+      <ul class="game-list" id="gameList"><li class="empty-state">Loading...</li></ul>
+    </div>
+  </div>
+</div>
+
+<script src="/js/lobby.js"></script>
+</body>
+</html>

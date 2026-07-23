@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game &mdash; Knightly</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/lobby.html" class="brand"><span class="piece">&#9822;</span> Knightly</a>
+  <div class="nav-links">
+    <span class="mono" id="roomLabel" style="color:var(--text-muted); font-size:13px;"></span>
+    <a href="/lobby.html">Leave room</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="game-wrap">
+
+    <div class="board-column">
+      <div class="player-strip">
+        <div class="who"><span class="dot" id="oppDot"></span><span id="oppName">Waiting for opponent&hellip;</span></div>
+        <div class="clock mono" id="oppClock">--:--</div>
+      </div>
+
+      <div class="board" id="board"></div>
+
+      <div class="player-strip">
+        <div class="who"><span class="dot" id="meDot"></span><span id="meName">You</span></div>
+        <div class="clock mono" id="meClock">--:--</div>
+      </div>
+
+      <div class="board-actions">
+        <button class="btn" id="drawBtn">Offer draw</button>
+        <button class="btn btn-danger" id="resignBtn">Resign</button>
+      </div>
+    </div>
+
+    <div class="side-column">
+      <div class="card">
+        <div class="panel-title">Move ledger</div>
+        <div class="ledger" id="ledger"></div>
+      </div>
+
+      <div class="card">
+        <div class="panel-title">Table talk</div>
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-input-row">
+          <input id="chatInput" placeholder="Say something..." maxlength="300">
+          <button class="btn" id="chatSendBtn">Send</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Promotion picker -->
+<div class="modal-backdrop" id="promoModal">
+  <div class="modal">
+    <h2>Promote to</h2>
+    <div class="actions" id="promoOptions"></div>
+  </div>
+</div>
+
+<!-- Game over -->
+<div class="modal-backdrop" id="overModal">
+  <div class="modal">
+    <h2 id="overTitle">Game over</h2>
+    <p id="overSub"></p>
+    <div class="actions">
+      <a href="/lobby.html" class="btn btn-primary">Back to lobby</a>
+    </div>
+  </div>
+</div>
+
+<!-- Draw offer toast -->
+<div class="modal-backdrop" id="drawModal">
+  <div class="modal">
+    <h2>Draw offered</h2>
+    <p id="drawSub">Your opponent is offering a draw.</p>
+    <div class="actions">
+      <button class="btn btn-primary" id="drawAcceptBtn">Accept</button>
+      <button class="btn" id="drawDeclineBtn">Decline</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/game.js"></script>
+</body>
+</html>
